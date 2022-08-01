@@ -18,7 +18,23 @@ class M_api extends CI_Model
         $this->db->from('tb_riwayat a');
         $this->db->join('tb_user b', 'a.user_id = b.user_id', 'left');
         $this->db->order_by('a.id DESC');
-        return $this->db->get()->result();
+        $riwayat =  $this->db->get()->result();
+
+        $arr = [];
+        if(!empty($riwayat)){
+            foreach ($riwayat as $key => $val):
+                $arr[$key]['id'] = (int) $val->id;
+                $arr[$key]['user_id'] = (int) $val->user_id;
+                $arr[$key]['nama'] = $val->nama;
+                $arr[$key]['benar'] = (int) $val->benar;
+                $arr[$key]['salah'] = (int) $val->salah;
+                $arr[$key]['created_at'] = date("d F Y", $val->created_at);
+            endforeach;
+
+            return array_values($arr);
+        }else{
+            return $arr;
+        }
     }
     
     /**

@@ -20,12 +20,15 @@ class Api extends RestController
     public function history_get()
     {
         // ambil riwayat permainan
-        $users = $this->M_api->get_history();
+        $riwayat = $this->M_api->get_history();
 
         // cek apakah terdapat riwayat permainan
-        if (!empty($users)) {
+        if (!empty($riwayat)) {
             // Set the response and exit
-            $this->response($users, 200);
+            $this->response([
+                'status' => true,
+                'data' => $riwayat
+            ], 200);
         } else {
             // Set the response and exit
             $this->response([
