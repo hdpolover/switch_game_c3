@@ -1,18 +1,41 @@
-<!doctype html>
-<title>SwitchGame</title>
-<style>
-  body { text-align: center; padding: 150px; }
-  h1 { font-size: 50px; }
-  body { font: 20px Helvetica, sans-serif; color: #333; }
-  article { display: block; text-align: left; width: 650px; margin: 0 auto; }
-  a { color: #dc8100; text-decoration: none; }
-  a:hover { color: #333; text-decoration: none; }
-</style>
+<!DOCTYPE html>
+<html lang="en">
 
-<article>
-    <h1>Switchgame !</h1>
-    <div>
-        <p>A simple game with a simple perpose!</p>
-        <p>&mdash; Switchgame admin</p>
-    </div>
-</article>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SwitchGame</title>
+	<style rel="stylesheet">
+		body {
+			background: url(<?= base_url();
+			?>assets/bg.png) no-repeat center center fixed;
+			-webkit-background-size: 100% 100%;
+			-moz-background-size: 100% 100%;
+			-o-background-size: 100% 100%;
+			background-size: 100% 100%;
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		#content {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			top: 0px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div id="content">
+		<iframe src="<?= base_url();?>game/index.html" frameborder="0" width="100%" height="100%"
+			allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;" allowfullscreen></iframe>
+	</div>
+</body>
+
+</html>
