@@ -9,6 +9,7 @@ class Api extends RestController
     {
         // Construct the parent class
         parent::__construct();
+        $this->load->model('M_api');
     }
     
     /**
@@ -16,10 +17,10 @@ class Api extends RestController
      *
      * @return array
      */
-    public function getHistory()
+    public function history_get()
     {
         // ambil riwayat permainan
-        $users = $this->M_api->get_riwayat();
+        $users = $this->M_api->get_history();
 
         // cek apakah terdapat riwayat permainan
         if (!empty($users)) {
@@ -40,14 +41,14 @@ class Api extends RestController
      *
      * @return void
      */
-    public function saveHistory()
+    public function save_post()
     {
 
         // get data post
         $params = $this->post();
 
         // cek and get data user
-        $user = $this->M_api->cek_user($params['nama']);
+        $user = $this->M_api->cek_user($params);
 
         // build array save riwayat
         $data = [

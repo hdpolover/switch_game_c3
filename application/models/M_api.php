@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_home extends CI_Model
+class M_api extends CI_Model
 {
     public function __construct()
     {
@@ -74,7 +74,7 @@ class M_home extends CI_Model
                 'nama' => $params['user']['nama']
             ];
 
-            $this->db->insert('tb_riwayat', $data);
+            $this->db->insert('tb_user', $data);
         }
         
         // inser ke tabel riwayat
