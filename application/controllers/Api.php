@@ -50,6 +50,10 @@ class Api extends RestController
         // get data post
         $params = $this->post();
 
+        $params = json_decode(str_replace("'", '"', $params[0]), true);
+
+        // ej($params);
+
         // cek and get data user
         $user = $this->M_api->cek_user($params);
 
