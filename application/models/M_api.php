@@ -52,9 +52,13 @@ class M_api extends CI_Model
         $user = $this->db->get()->row();
 
         if($user){
+
             return [
                 'status' => true,
-                'data' => $user
+                'data' => [
+                    'user_id' => $user->user_id,
+                    'nama' => $user->nama
+                    ]
             ];
         }else{
 
@@ -87,7 +91,8 @@ class M_api extends CI_Model
         if(isset($params['user'])){
             $data = [
                 'user_id' => $params['user']['user_id'],
-                'nama' => $params['user']['nama']
+                'nama' => $params['user']['nama'],
+                'created_at' => time()
             ];
 
             $this->db->insert('tb_user', $data);
@@ -98,6 +103,7 @@ class M_api extends CI_Model
             'user_id' => $params['riwayat']['user_id'],
             'benar' => $params['riwayat']['benar'],
             'salah' => $params['riwayat']['salah'],
+            'created_at' => time()
         ];
 
         $this->db->insert('tb_riwayat', $data);
