@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 defined('BASEPATH') or exit('No direct script access allowed');
 
 use chriskacerguis\RestServer\RestController;
@@ -50,9 +51,23 @@ class Api extends RestController
         // get data post
         $params = $this->post();
 
-        $params = json_decode(str_replace("'", '"', $params[0]), true);
+        if(!is_array($params)){
+            $this->response([
+                'status' => false,
+                'message' => 'Params is invalid'
+            ], 422);
 
-        // ej($params);
+        }
+        
+        foreach ($params as $key => $val):
+            $params = str_replace('"', '', $key);
+            break;
+        endforeach;
+        
+        
+        $params = json_decode(str_replace("'", '"', $params), true);
+        
+        // ej($params['nama']);
 
         // cek and get data user
         $user = $this->M_api->cek_user($params);
