@@ -47,7 +47,7 @@ class M_api extends CI_Model
     public function cek_user($params = []){
         $this->db->select('*');
         $this->db->from('tb_user');
-        $this->db->like('nama', $params['nama']);
+        $this->db->where('nama', $params['nama']);
 
         $user = $this->db->get()->row();
 

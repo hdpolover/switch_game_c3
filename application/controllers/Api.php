@@ -56,14 +56,19 @@ class Api extends RestController
                 'status' => false,
                 'message' => 'Params is invalid'
             ], 422);
-
         }
         
         foreach ($params as $key => $val):
             $params = str_replace('"', '', $key);
             break;
         endforeach;
-        
+
+        if (strpos($params, 'nama') === true) { 
+            $this->response([
+                'status' => false,
+                'message' => 'Can`t find required params `nama` !'
+            ], 422);
+        }
         
         $params = json_decode(str_replace("'", '"', $params), true);
         
